@@ -1,4 +1,3 @@
-
 # top-react
 
 **`top-react`** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers two key components:
@@ -27,7 +26,7 @@ The `ServerButton` component is designed to handle server-side form submissions 
 import React from "react";
 import connectToDb from "../../configs/db";
 import testModel from '@/../model/test';
-import { ServerButton } from "top-react";
+import { ServerButton } from "top-react/serverButton/server";
 
 export default async function Home() {
   const action = async () => {
@@ -54,7 +53,7 @@ The `Ue` provider enhances your site's performance by delaying the rendering of 
 
 ```javascript
 import React from "react";
-import { Ue } from "top-react";
+import { Ue } from "top-react/ultraElem/ultraElem";
 
 const App = () => {
   return (
