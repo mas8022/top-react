@@ -1,10 +1,15 @@
+
 # top-react
 
-**`top-react`** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers two key components:
+**`top-react`** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers four key components:
 
 1. **`ServerButton`**: A specialized button component that handles form submissions in SSR environments, making it easier to trigger server-side actions directly from user interactions.
   
 2. **`Ue` Provider**: A performance-boosting provider that delays the rendering of its children until the user scrolls to the element, improving site speed. It also displays a smooth animation if the content is slow to load, ensuring a great user experience even with weak internet connections.
+
+3. **`useProState` Hook**: A custom hook that provides optimistic UI updates, similar to the `useOptimistic` hook in React. It allows you to handle state updates optimistically while performing asynchronous operations.
+
+4. **`useLocalStorage` Hook**: A custom hook that allows you to store and persist state in `localStorage`, making it easy to maintain state across page reloads.
 
 ## Installation
 
@@ -72,6 +77,73 @@ const App = () => {
 export default App;
 ```
 
+### 3. `useProState` Hook
+
+The `useProState` hook enables optimistic UI updates, allowing your application to provide a smoother user experience while handling asynchronous actions. It works by immediately updating the UI with an optimistic value and later syncing with the actual result once the async operation is complete.
+
+#### Example:
+
+```javascript
+"use client";
+import React, { useCallback } from "react";
+import { useProState } from "top-react/useProState/useProState";
+
+const Page = () => {
+  const [executeAction, optimisticValue] = useProState(0);
+
+  const clickHandler = useCallback(() => {
+    executeAction((currentValue, isOptimistic) => {
+      const updatedValue = currentValue + 1;
+
+      if (!isOptimistic) {
+        fetch("/api/test", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedValue),
+        });
+      }
+
+      return updatedValue;
+    });
+  }, [executeAction]);
+
+  return (
+    <div className="counter">
+      <div onClick={clickHandler}>Click</div>
+      <span className="count">{optimisticValue}</span>
+    </div>
+  );
+};
+
+export default Page;
+```
+
+### 4. `useLocalStorage` Hook
+
+The `useLocalStorage` hook allows you to easily store and persist state in the browser's `localStorage`. This is useful for maintaining state across page reloads.
+
+#### Example:
+
+```javascript
+import React from 'react';
+import { useLocalStorage } from "top-react/useLocalStorage/useLocalStorage";
+
+const App = () => {
+  const [count, setCount] = useLocalStorage("count", 0);
+
+  return (
+    <div>
+      <button onClick={() => setCount(prev => prev + 1)}>increase</button>
+      <span>{count}</span>
+    </div>
+  );
+};
+
+export default App;
+```
+
 ### Detailed Explanation
 
 - **`ServerButton`**: 
@@ -82,6 +154,14 @@ export default App;
   - **Purpose**: To improve the perceived performance of your site by delaying rendering and showing a loading animation for slow connections.
   - **How It Works**: The `Ue` provider checks when the user scrolls to the element it wraps. It only renders the element at that point, which can greatly reduce the initial load time. If the internet connection is slow, it displays a loading animation until the content is ready.
 
+- **`useProState` Hook**: 
+  - **Purpose**: To provide optimistic updates to the UI during asynchronous operations.
+  - **How It Works**: The `useProState` hook returns a function to execute actions with an optimistic update and the current optimistic value. When the action is executed, the UI is updated with an optimistic value, and the actual update is synced later when the operation completes.
+
+- **`useLocalStorage` Hook**: 
+  - **Purpose**: To persist state in `localStorage` so that it remains even after a page reload.
+  - **How It Works**: The `useLocalStorage` hook returns the current value and a setter function. The value is stored in `localStorage`, and any updates to the state are automatically synced with it.
+
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily and optimize your site's performance with delayed rendering and graceful loading animations. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
+The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, and persist state in `localStorage`. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
