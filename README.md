@@ -39,7 +39,7 @@ The `ServerButton` component is designed to handle server-side form submissions 
 ```javascript
 import React from "react";
 import connectToDb from "../../configs/db";
-import testModel from '@/../model/test';
+import testModel from "@/../model/test";
 import { ServerButton } from "top-react/serverButton/server";
 
 export default async function Home() {
@@ -48,12 +48,14 @@ export default async function Home() {
     console.log("Button Clicked!");
 
     connectToDb();
-    await testModel.create({name: "mohammad", email: "mas@gmail.com"});
+    await testModel.create({ name: "mohammad", email: "mas@gmail.com" });
   };
 
   return (
     <div className="w-full h-screen flex items-center justify-center">
-      <ServerButton onClick={action} />
+      <ServerButton onClick={action}>
+        <button>click</button>
+      </ServerButton>
     </div>
   );
 }

@@ -1,16 +1,11 @@
 import React from "react";
 
-const ServerButton = ({ onClick: action }) => {
+const ServerButton = ({ onClick: action, children }) => {
   return (
     <form action={action}>
-      <button
-        type="submit"
-        className="w-96 h-20 bg-blue-600 rounded-lg flex items-center justify-center text-3xl text-white font-bold"
-      >
-        click
-      </button>
+      <button type="submit">{children}</button>
     </form>
   );
 };
 
-export {ServerButton};
+export { ServerButton };
