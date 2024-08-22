@@ -3,19 +3,30 @@
 
 **`top-react`** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers three key components:
 
-1. **`ServerButton`**: A specialized button component that handles form submissions in SSR environments, making it easier to trigger server-side actions directly from user interactions.
-  
-2. **`Ue` Provider**: A performance-boosting provider that delays the rendering of its children until the user scrolls to the element, improving site speed. It also displays a smooth animation if the content is slow to load, ensuring a great user experience even with weak internet connections.
+---
 
-3. **`useLocalStorage` Hook**: A custom hook that allows you to store and persist state in `localStorage`, making it easy to maintain state across page reloads.
+## Key Components
+
+1. **`ServerButton`**: 
+   - A specialized button component that handles form submissions in SSR environments, making it easier to trigger server-side actions directly from user interactions.
+  
+2. **`Ue` Provider**: 
+   - A performance-boosting provider that delays the rendering of its children until the user scrolls to the element, improving site speed. It also displays a smooth animation if the content is slow to load, ensuring a great user experience even with weak internet connections.
+
+3. **`useLocalStorage` Hook**: 
+   - A custom hook that allows you to store and persist state in `localStorage`, making it easy to maintain state across page reloads.
+
+---
 
 ## Installation
 
 To get started, install `top-react` using npm:
 
-\```bash
+```bash
 npm install top-react
-\```
+```
+
+---
 
 ## Usage
 
@@ -25,7 +36,7 @@ The `ServerButton` component is designed to handle server-side form submissions 
 
 #### Example:
 
-\```javascript
+```javascript
 import React from "react";
 import connectToDb from "../../configs/db";
 import testModel from '@/../model/test';
@@ -46,7 +57,7 @@ export default async function Home() {
     </div>
   );
 }
-\```
+```
 
 ### 2. `Ue` Provider
 
@@ -54,7 +65,7 @@ The `Ue` provider enhances your site's performance by delaying the rendering of 
 
 #### Example:
 
-\```javascript
+```javascript
 import React from "react";
 import { Ue } from "top-react/ultraElem/ultraElem";
 
@@ -73,7 +84,7 @@ const App = () => {
 };
 
 export default App;
-\```
+```
 
 ### 3. `useLocalStorage` Hook
 
@@ -81,7 +92,7 @@ The `useLocalStorage` hook allows you to easily store and persist state in the b
 
 #### Example:
 
-\```javascript
+```javascript
 import React from 'react';
 import { useLocalStorage } from "top-react/useLocalStorage/useLocalStorage";
 
@@ -97,9 +108,11 @@ const App = () => {
 };
 
 export default App;
-\```
+```
 
-### Detailed Explanation
+---
+
+## Detailed Explanation
 
 - **`ServerButton`**: 
   - **Purpose**: To solve the challenge of triggering server-side logic from buttons in SSR pages.
@@ -112,6 +125,8 @@ export default App;
 - **`useLocalStorage` Hook**: 
   - **Purpose**: To persist state in `localStorage` so that it remains even after a page reload.
   - **How It Works**: The `useLocalStorage` hook returns the current value and a setter function. The value is stored in `localStorage`, and any updates to the state are automatically synced with it.
+
+---
 
 ## Conclusion
 
