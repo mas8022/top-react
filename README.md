@@ -1,20 +1,23 @@
 
 # top-react
 
-**`top-react`** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers three key components:
+**`top-react`** is a powerful React library designed to enhance the performance, usability, and security of SSR (Server-Side Rendering) in Next.js applications. It offers several key components:
 
 ---
 
 ## Key Components
 
-1. **`ServerButton`**: 
-   - A specialized button component that handles form submissions in SSR environments, making it easier to trigger server-side actions directly from user interactions.
-  
-2. **`Ue` Provider**: 
-   - A performance-boosting provider that delays the rendering of its children until the user scrolls to the element, improving site speed. It also displays a smooth animation if the content is slow to load, ensuring a great user experience even with weak internet connections.
+1. **`ServerButton`**  
+   A specialized button component that handles form submissions in SSR environments, making it easier to trigger server-side actions directly from user interactions.
 
-3. **`useLocalStorage` Hook**: 
-   - A custom hook that allows you to store and persist state in `localStorage`, making it easy to maintain state across page reloads.
+2. **`Ue` Provider**  
+   A performance-boosting provider that delays the rendering of its children until the user scrolls to the element, improving site speed. It also displays a smooth animation if the content is slow to load, ensuring a great user experience even with weak internet connections.
+
+3. **`useLocalStorage` Hook**  
+   A custom hook that allows you to store and persist state in `localStorage`, making it easy to maintain state across page reloads.
+
+4. **`useSanitizeInput` Hook**  
+   A custom hook that sanitizes input to enhance the security of your application by preventing XSS attacks and other injection vulnerabilities.
 
 ---
 
@@ -53,9 +56,11 @@ export default async function Home() {
 
   return (
     <div className="w-full h-screen flex items-center justify-center">
+
       <ServerButton onClick={action}>
         <button>click</button>
       </ServerButton>
+      
     </div>
   );
 }
@@ -112,24 +117,32 @@ const App = () => {
 export default App;
 ```
 
----
+### 4. `useSanitizeInput` Hook
 
-## Detailed Explanation
+The `useSanitizeInput` hook sanitizes input to prevent XSS attacks and other injection vulnerabilities, ensuring your application remains secure.
 
-- **`ServerButton`**: 
-  - **Purpose**: To solve the challenge of triggering server-side logic from buttons in SSR pages.
-  - **How It Works**: The `ServerButton` wraps the server-side action in a form submission, which is triggered when the button is clicked. This ensures that the server-side code runs as expected in SSR contexts.
+#### Example:
 
-- **`Ue` Provider**: 
-  - **Purpose**: To improve the perceived performance of your site by delaying rendering and showing a loading animation for slow connections.
-  - **How It Works**: The `Ue` provider checks when the user scrolls to the element it wraps. It only renders the element at that point, which can greatly reduce the initial load time. If the internet connection is slow, it displays a loading animation until the content is ready.
+```javascript
+import React, { useState } from "react";
+import { useSanitizeInput } from "top-react/useSanitizeInput/useSanitizeInput";
 
-- **`useLocalStorage` Hook**: 
-  - **Purpose**: To persist state in `localStorage` so that it remains even after a page reload.
-  - **How It Works**: The `useLocalStorage` hook returns the current value and a setter function. The value is stored in `localStorage`, and any updates to the state are automatically synced with it.
+export default function App() {
+  const [testValue, setTestValue] = useState("");
+  return (
+    <div>
+      <input
+        type="text"
+        value={testValue}
+        onChange={(e) => setTestValue(useSanitizeInput(e.target.value))}
+      />
+    </div>
+  );
+}
+```
 
 ---
 
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, and persist state in `localStorage`. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
+The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, persist state in `localStorage`, and ensure security through input sanitization. With these components, you can ensure a smooth, responsive, and secure user experience in your Next.js applications.
