@@ -19,6 +19,9 @@
 4. **`useSanitizeInput` Hook**  
    A custom hook that sanitizes input to enhance the security of your application by preventing XSS attacks and other injection vulnerabilities.
 
+5. **`GetVideoDuration` Component**  
+   A component that extracts and provides the duration of an uploaded video file. It enhances user experience by allowing developers to easily handle video files in forms or standalone file inputs.
+
 ---
 
 ## Installation
@@ -141,8 +144,37 @@ export default function App() {
 }
 ```
 
+### 5. `GetVideoDuration` Component
+
+The `GetVideoDuration` component provides the duration of an uploaded video file. It can be used within a form or as a standalone file input handler. It enhances the user experience by automatically extracting and displaying the video duration.
+
+#### Example:
+
+```javascript
+"use client"
+import React, { useState } from "react";
+import GetVideoDuration from "top-react/GetVideoDuration/GetVideoDuration";
+
+export default function App() {
+  const [testFile, setTestFile] = useState({});
+  const [duration, setDuration] = useState(0);
+
+  return (
+    <div>
+      <input
+        type="file"
+        onChange={(e) => setTestFile(e.currentTarget.files[0])}
+      />
+      <GetVideoDuration file={testFile} setDuration={setDuration} />
+    </div>
+  );
+}
+```
+
+**Usage Tip**: Ensure that the `GetVideoDuration` component is placed after the file input in the form structure to ensure proper functionality.
+
 ---
 
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, persist state in `localStorage`, and ensure security through input sanitization. With these components, you can ensure a smooth, responsive, and secure user experience in your Next.js applications.
+The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, persist state in `localStorage`, ensure security through input sanitization, and easily extract video durations from uploaded files. With these components, you can ensure a smooth, responsive, secure, and feature-rich user experience in your Next.js applications.
