@@ -7,19 +7,16 @@
 
 ## Key Components
 
-1. **`ServerButton`**  
-   A specialized button component that handles form submissions in SSR environments, making it easier to trigger server-side actions directly from user interactions.
-
-2. **`Ue` Provider**  
+1. **`Ue` Provider**  
    A performance-boosting provider that delays the rendering of its children until the user scrolls to the element, improving site speed. It also displays a smooth animation if the content is slow to load, ensuring a great user experience even with weak internet connections.
 
-3. **`useLocalStorage` Hook**  
+2. **`useLocalStorage` Hook**  
    A custom hook that allows you to store and persist state in `localStorage`, making it easy to maintain state across page reloads.
 
-4. **`useSanitizeInput` Hook**  
+3. **`useSanitizeInput` Hook**  
    A custom hook that sanitizes input to enhance the security of your application by preventing XSS attacks and other injection vulnerabilities.
 
-5. **`GetVideoDuration` Component**  
+4. **`GetVideoDuration` Component**  
    A component that extracts and provides the duration of an uploaded video file. It enhances user experience by allowing developers to easily handle video files in forms or standalone file inputs.
 
 ---
@@ -36,40 +33,7 @@ npm install top-react
 
 ## Usage
 
-### 1. `ServerButton` Component
-
-The `ServerButton` component is designed to handle server-side form submissions in SSR pages. It wraps your server-side action in a form and submits it upon clicking the button.
-
-#### Example:
-
-```javascript
-import React from "react";
-import connectToDb from "../../configs/db";
-import testModel from "@/../model/test";
-import { ServerButton } from "top-react/serverButton/server";
-
-export default async function Home() {
-  const action = async () => {
-    "use server";
-    console.log("Button Clicked!");
-
-    connectToDb();
-    await testModel.create({ name: "mohammad", email: "mas@gmail.com" });
-  };
-
-  return (
-    <div className="w-full h-screen flex items-center justify-center">
-
-      <ServerButton onClick={action}>
-        <button>click</button>
-      </ServerButton>
-      
-    </div>
-  );
-}
-```
-
-### 2. `Ue` Provider
+### 1. `Ue` Provider
 
 The `Ue` provider enhances your site's performance by delaying the rendering of its children until the user scrolls to the element. If the user has a weak internet connection, a beautiful loading animation is displayed until the content is fully loaded.
 
@@ -96,7 +60,7 @@ const App = () => {
 export default App;
 ```
 
-### 3. `useLocalStorage` Hook
+### 2. `useLocalStorage` Hook
 
 The `useLocalStorage` hook allows you to easily store and persist state in the browser's `localStorage`. This is useful for maintaining state across page reloads.
 
@@ -120,7 +84,7 @@ const App = () => {
 export default App;
 ```
 
-### 4. `useSanitizeInput` Hook
+### 3. `useSanitizeInput` Hook
 
 The `useSanitizeInput` hook sanitizes input to prevent XSS attacks and other injection vulnerabilities, ensuring your application remains secure.
 
@@ -144,7 +108,7 @@ export default function App() {
 }
 ```
 
-### 5. `GetVideoDuration` Component
+### 4. `GetVideoDuration` Component
 
 The `GetVideoDuration` component provides the duration of an uploaded video file. It can be used within a form or as a standalone file input handler. It enhances the user experience by automatically extracting and displaying the video duration.
 
@@ -177,4 +141,4 @@ export default function App() {
 
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, persist state in `localStorage`, ensure security through input sanitization, and easily extract video durations from uploaded files. With these components, you can ensure a smooth, responsive, secure, and feature-rich user experience in your Next.js applications.
+The `top-react` library provides you with tools to optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, persist state in `localStorage`, ensure security through input sanitization, and easily extract video durations from uploaded files. With these components, you can ensure a smooth, responsive, secure, and feature-rich user experience in your Next.js applications.
