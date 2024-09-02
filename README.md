@@ -1,25 +1,7 @@
 
 # top-react
 
-**`top-react`** is a powerful React library designed to enhance the performance, usability, and security of SSR (Server-Side Rendering) in Next.js applications. It offers several key components:
-
----
-
-## Key Components
-
-1. **`Ue` Provider**  
-   A performance-boosting provider that delays the rendering of its children until the user scrolls to the element, improving site speed. It also displays a smooth animation if the content is slow to load, ensuring a great user experience even with weak internet connections.
-
-2. **`useLocalStorage` Hook**  
-   A custom hook that allows you to store and persist state in `localStorage`, making it easy to maintain state across page reloads.
-
-3. **`useSanitizeInput` Hook**  
-   A custom hook that sanitizes input to enhance the security of your application by preventing XSS attacks and other injection vulnerabilities.
-
-4. **`GetVideoDuration` Component**  
-   A component that extracts and provides the duration of an uploaded video file. It enhances user experience by allowing developers to easily handle video files in forms or standalone file inputs.
-
----
+**`top-react`** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers various components and hooks that can help improve the user experience and site performance.
 
 ## Installation
 
@@ -29,11 +11,57 @@ To get started, install `top-react` using npm:
 npm install top-react
 ```
 
----
-
 ## Usage
 
-### 1. `Ue` Provider
+### 1. `ServerButton` Component
+
+The `ServerButton` component is designed to handle server-side form submissions in SSR pages. It wraps your server-side action in a form and submits it upon clicking the button.
+
+#### Example:
+
+```javascript
+import React from "react";
+import { ServerButton } from "top-react/ServerButton/ServerButton";
+
+export default function App() {
+  let testValue = 0;
+
+  const testFunction = async () => {
+    "use server";
+    console.log("this message shows in server");
+  };
+
+  return (
+    <>
+      <ServerButton onClick={testFunction}>click</ServerButton>
+    </>
+  );
+}
+```
+
+#### Example with Parameters:
+
+```javascript
+import React from "react";
+import { ServerButton } from "top-react/ServerButton/ServerButton";
+
+export default function App() {
+  let testValue = 0;
+
+  const testFunction = (testValue) => async () => {
+    "use server";
+    console.log("this value shows in server", testValue);
+  };
+
+  return (
+    <div>
+      <ServerButton onClick={testFunction(testValue)}>click</ServerButton>
+    </div>
+  );
+}
+```
+
+### 2. `Ue` Provider
 
 The `Ue` provider enhances your site's performance by delaying the rendering of its children until the user scrolls to the element. If the user has a weak internet connection, a beautiful loading animation is displayed until the content is fully loaded.
 
@@ -60,7 +88,7 @@ const App = () => {
 export default App;
 ```
 
-### 2. `useLocalStorage` Hook
+### 3. `useLocalStorage` Hook
 
 The `useLocalStorage` hook allows you to easily store and persist state in the browser's `localStorage`. This is useful for maintaining state across page reloads.
 
@@ -84,9 +112,9 @@ const App = () => {
 export default App;
 ```
 
-### 3. `useSanitizeInput` Hook
+### 4. `useSanitizeInput` Hook
 
-The `useSanitizeInput` hook sanitizes input to prevent XSS attacks and other injection vulnerabilities, ensuring your application remains secure.
+The `useSanitizeInput` hook sanitizes user inputs to enhance security by preventing potential XSS (Cross-Site Scripting) attacks.
 
 #### Example:
 
@@ -108,14 +136,14 @@ export default function App() {
 }
 ```
 
-### 4. `GetVideoDuration` Component
+### 5. `GetVideoDuration` Function
 
-The `GetVideoDuration` component provides the duration of an uploaded video file. It can be used within a form or as a standalone file input handler. It enhances the user experience by automatically extracting and displaying the video duration.
+The `GetVideoDuration` function takes an uploaded video file and returns the duration of the video.
 
 #### Example:
 
 ```javascript
-"use client"
+"use client";
 import React, { useState } from "react";
 import GetVideoDuration from "top-react/GetVideoDuration/GetVideoDuration";
 
@@ -135,10 +163,6 @@ export default function App() {
 }
 ```
 
-**Usage Tip**: Ensure that the `GetVideoDuration` component is placed after the file input in the form structure to ensure proper functionality.
-
----
-
 ## Conclusion
 
-The `top-react` library provides you with tools to optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, persist state in `localStorage`, ensure security through input sanitization, and easily extract video durations from uploaded files. With these components, you can ensure a smooth, responsive, secure, and feature-rich user experience in your Next.js applications.
+The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, and obtain video durations. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
