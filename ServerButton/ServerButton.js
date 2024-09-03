@@ -1,3 +1,4 @@
+"use server";
 import React from "react";
 
 const ServerButton = ({ onClick: action, className: classes, children }) => {
