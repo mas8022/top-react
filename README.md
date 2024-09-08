@@ -163,6 +163,24 @@ export default function App() {
 }
 ```
 
+### 6. `useOnline` Hook
+
+The `useOnline` hook detects whether the user is online or offline in real-time. Note that this hook can only be used on client-side rendered (CSR) pages and requires the `"use client"` directive at the top of the file.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import { useOnline } from "top-react/useOnline/useOnline";
+
+export default function App() {
+  const isOnline = useOnline();
+
+  return <div>{isOnline ? "You are online" : "You are offline"}</div>;
+}
+```
+
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, and obtain video durations. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
+The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, and track online/offline status. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
