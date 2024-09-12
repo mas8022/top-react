@@ -29,7 +29,7 @@ const GetVideoDuration = memo(({ setDuration, file }) => {
     }
   }, [file, setDuration]);
 
-  return file && <video ref={videoRef} style={{display: "none"}}></video>;
+  return file && <video ref={videoRef} style={{ display: "none" }}></video>;
 });
 
-export default GetVideoDuration;
+export { GetVideoDuration };

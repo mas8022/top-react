@@ -32,4 +32,4 @@ function useIdle(timeout = 3000) {
   return isIdle;
 }
 
-export default useIdle;
+export { useIdle };
