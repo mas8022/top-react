@@ -39,28 +39,6 @@ export default function App() {
 }
 ```
 
-#### Example with Parameters:
-
-```javascript
-import React from "react";
-import { ServerButton } from "top-react/ServerButton/ServerButton";
-
-export default function App() {
-  let testValue = 0;
-
-  const testFunction = (testValue) => async () => {
-    "use server";
-    console.log("this value shows in server", testValue);
-  };
-
-  return (
-    <div>
-      <ServerButton onClick={testFunction(testValue)}>click</ServerButton>
-    </div>
-  );
-}
-```
-
 ### 2. `Ue` Provider
 
 The `Ue` provider enhances your site's performance by delaying the rendering of its children until the user scrolls to the element. If the user has a weak internet connection, a beautiful loading animation is displayed until the content is fully loaded.
@@ -181,6 +159,34 @@ export default function App() {
 }
 ```
 
+### 7. `useIdle` Hook
+
+The `useIdle` hook detects user inactivity on the current page based on JavaScript events. It is designed to be used in client-side rendered (CSR) pages and requires the `"use client"` directive.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import useIdle from "top-react/useIdle/useIdle";
+
+function App() {
+  const isIdle = useIdle(5000); // User inactivity for 5 seconds
+
+  return (
+    <div>
+      {isIdle ? (
+        <p>User has been inactive for a long time!</p>
+      ) : (
+        <p>The user is active.</p>
+      )}
+    </div>
+  );
+}
+
+export default App;
+```
+
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, and track online/offline status. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
+The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, and detect user inactivity. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
