@@ -1,6 +1,7 @@
+
 # top-react
 
-**`top-react`** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers various components and hooks that can help improve the user experience and site performance.
+**top-react** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers various components and hooks that can help improve the user experience and site performance.
 
 ## Installation
 
@@ -12,7 +13,7 @@ npm install top-react
 
 ## Usage
 
-### 1. `ServerButton` Component
+### 1. ServerButton Component
 
 The `ServerButton` component is designed to handle server-side form submissions in SSR pages. It wraps your server-side action in a form and submits it upon clicking the button.
 
@@ -32,13 +33,13 @@ export default function App() {
 
   return (
     <>
-      <ServerButton onClick={testFunction}>click</ServerButton>
+      <ServerButton onClick={testFunction}>Click</ServerButton>
     </>
   );
 }
 ```
 
-### 2. `Ue` Provider
+### 2. Ue Provider
 
 The `Ue` provider enhances your site's performance by delaying the rendering of its children until the user scrolls to the element. If the user has a weak internet connection, a beautiful loading animation is displayed until the content is fully loaded.
 
@@ -65,9 +66,9 @@ const App = () => {
 export default App;
 ```
 
-### 3. `useLocalStorage` Hook
+### 3. useLocalStorage Hook
 
-The `useLocalStorage` hook allows you to easily store and persist state in the browser's `localStorage`. This is useful for maintaining state across page reloads.
+The `useLocalStorage` hook allows you to easily store and persist state in the browser's localStorage. This is useful for maintaining state across page reloads.
 
 #### Example:
 
@@ -80,7 +81,7 @@ const App = () => {
 
   return (
     <div>
-      <button onClick={() => setCount((prev) => prev + 1)}>increase</button>
+      <button onClick={() => setCount((prev) => prev + 1)}>Increase</button>
       <span>{count}</span>
     </div>
   );
@@ -89,7 +90,7 @@ const App = () => {
 export default App;
 ```
 
-### 4. `useSanitizeInput` Hook
+### 4. useSanitizeInput Hook
 
 The `useSanitizeInput` hook sanitizes user inputs to enhance security by preventing potential XSS (Cross-Site Scripting) attacks.
 
@@ -113,7 +114,7 @@ export default function App() {
 }
 ```
 
-### 5. `GetVideoDuration` Function
+### 5. GetVideoDuration Function
 
 The `GetVideoDuration` function takes an uploaded video file and returns the duration of the video.
 
@@ -140,7 +141,7 @@ export default function App() {
 }
 ```
 
-### 6. `useOnline` Hook
+### 6. useOnline Hook
 
 The `useOnline` hook detects whether the user is online or offline in real-time. Note that this hook can only be used on client-side rendered (CSR) pages and requires the `"use client"` directive at the top of the file.
 
@@ -158,7 +159,7 @@ export default function App() {
 }
 ```
 
-### 7. `useIdle` Hook
+### 7. useIdle Hook
 
 The `useIdle` hook detects user inactivity on the current page based on JavaScript events. It is designed to be used in client-side rendered (CSR) pages and requires the `"use client"` directive.
 
@@ -186,7 +187,7 @@ function App() {
 export default App;
 ```
 
-### 8. `useScrollProgress` Hook
+### 8. useScrollProgress Hook
 
 The `useScrollProgress` hook tracks the scroll progress of the page. It returns a percentage value representing how much of the page has been scrolled. This hook is intended to be used on client-side rendered (CSR) pages and requires the `"use client"` directive.
 
@@ -208,8 +209,35 @@ function App() {
 export default App;
 ```
 
+### 9. useLongPress Hook
+
+The `useLongPress` hook triggers an action when the user holds down a click on an element for a specified duration. This hook is intended to be used on client-side rendered (CSR) pages and requires the `"use client"` directive.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import { useLongPress } from "top-react/useLongPress/useLongPress";
+
+function LongPressComponent() {
+  const testFunction = () => {
+    alert("Long press detected!");
+  };
+
+  // Call useLongPress with the testFunction and a 2000ms (2 seconds) hold duration
+  const longPressEvents = useLongPress(testFunction, 2000);
+
+  return (
+    <div>
+      <button {...longPressEvents}>Hold the button</button>
+    </div>
+  );
+}
+
+export default LongPressComponent;
+```
 
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, and detect user inactivity. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
-```
+The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
