@@ -238,6 +238,32 @@ function LongPressComponent() {
 export default LongPressComponent;
 ```
 
+### 10. useClipboard Hook
+
+The `useClipboard` hook helps you easily copy text to the clipboard. It works only on client-side rendered (CSR) pages and requires the `"use client"` directive.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import useClipboard from "top-react/useClipboard/useClipboard";
+
+function App() {
+  const { copied, copyToClipboard } = useClipboard();
+
+  return (
+    <div>
+      <button onClick={() => copyToClipboard("test text.......")}>
+        {copied ? "Copied!" : "Copy to Clipboard"}
+      </button>
+    </div>
+  );
+}
+
+export default App;
+```
+
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
+The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press and clipboard events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
