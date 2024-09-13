@@ -142,7 +142,7 @@ export default function App() {
 
 ### 6. useOnline Hook
 
-The `useOnline` hook detects whether the user is online or offline in real-time. Note that this hook can only be used on client-side rendered (CSR) pages and requires the `"use client"` directive at the top of the file.
+The `useOnline` hook detects whether the user is online or offline in real-time. Note that this hook can only be used on `client-side` rendered (CSR) pages and requires the `"use client"` directive at the top of the file.
 
 #### Example:
 
@@ -160,7 +160,7 @@ export default function App() {
 
 ### 7. useIdle Hook
 
-The `useIdle` hook detects user inactivity on the current page based on JavaScript events. It is designed to be used in client-side rendered (CSR) pages and requires the `"use client"` directive.
+The `useIdle` hook detects user inactivity on the current page based on JavaScript events. It is designed to be used in `client-side` rendered (CSR) pages and requires the `"use client"` directive.
 
 #### Example:
 
@@ -188,7 +188,7 @@ export default App;
 
 ### 8. useScrollProgress Hook
 
-The `useScrollProgress` hook tracks the scroll progress of the page. It returns a percentage value representing how much of the page has been scrolled. This hook is intended to be used on client-side rendered (CSR) pages and requires the `"use client"` directive.
+The `useScrollProgress` hook tracks the scroll progress of the page. It returns a percentage value representing how much of the page has been scrolled. This hook is intended to be used on `client-side` rendered (CSR) pages and requires the `"use client"` directive.
 
 #### Example:
 
@@ -210,7 +210,7 @@ export default App;
 
 ### 9. useLongPress Hook
 
-The `useLongPress` hook triggers an action when the user holds down a click on an element for a specified duration. This hook is intended to be used on client-side rendered (CSR) pages and requires the `"use client"` directive.
+The `useLongPress` hook triggers an action when the user holds down a click on an element for a specified duration. This hook is intended to be used on `client-side` rendered (CSR) pages and requires the `"use client"` directive.
 
 #### Example:
 
@@ -239,7 +239,7 @@ export default LongPressComponent;
 
 ### 10. useClipboard Hook
 
-The `useClipboard` hook helps you easily copy text to the clipboard. It works only on client-side rendered (CSR) pages and requires the `"use client"` directive.
+The `useClipboard` hook helps you easily copy text to the clipboard. It works only on `client-side` rendered (CSR) pages and requires the `"use client"` directive.
 
 #### Example:
 
@@ -263,15 +263,14 @@ function App() {
 export default App;
 ```
 
-### 10. useTabVisibility Hook
+### 11. useTabVisibility Hook
 
-The `useTabVisibility` hook from the `top-react` library helps you track whether the browser tab is currently visible or hidden. This hook is designed to be used only in client-side rendering (CSR) environments.
+The `useTabVisibility` hook from the `top-react` library helps you track whether the browser tab is currently visible or hidden. This hook is designed to be used only in `client-side` rendering (CSR) environments.
 
 #### Example:
 
 ```javascript
 "use client";
-
 import React, { useEffect } from "react";
 import { useTabVisibility } from "top-react/useTabVisibility/useTabVisibility";
 
@@ -283,6 +282,40 @@ function App() {
   }, [isTabVisible]);
 
   return <div></div>;
+}
+
+export default App;
+```
+
+### 12. useGeoLocation Hook
+
+The `useGeoLocation` hook is a custom React hook that retrieves the user's geographic location. This hook is designed to work exclusively in `client-side` rendering (CSR) environments.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import { useGeoLocation } from "top-react/useGeoLocation/useGeoLocation";
+
+function App() {
+  const { location, error, loading } = useGeoLocation();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return (
+    <div>
+      <h2>Your Location</h2>
+      <p>X: {location.lat}</p> {/* Latitude as X */}
+      <p>Y: {location.lon}</p> {/* Longitude as Y */}
+    </div>
+  );
 }
 
 export default App;
