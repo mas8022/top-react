@@ -1,4 +1,3 @@
-
 # top-react
 
 **top-react** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers various components and hooks that can help improve the user experience and site performance.
@@ -259,6 +258,31 @@ function App() {
       </button>
     </div>
   );
+}
+
+export default App;
+```
+
+### 10. useTabVisibility Hook
+
+The `useTabVisibility` hook from the `top-react` library helps you track whether the browser tab is currently visible or hidden. This hook is designed to be used only in client-side rendering (CSR) environments.
+
+#### Example:
+
+```javascript
+"use client";
+
+import React, { useEffect } from "react";
+import { useTabVisibility } from "top-react/useTabVisibility/useTabVisibility";
+
+function App() {
+  const isTabVisible = useTabVisibility();
+
+  useEffect(() => {
+    console.log(isTabVisible);
+  }, [isTabVisible]);
+
+  return <div></div>;
 }
 
 export default App;
