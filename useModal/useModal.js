@@ -53,7 +53,7 @@ const useModal = () => {
     };
 
     const modalStyles = {
-      backgroundColor: "white",
+      backgroundColor: "rgba(255, 255, 255, 0)",
       borderRadius: "10px",
       zIndex: 10001,
       maxWidth: "500px",
