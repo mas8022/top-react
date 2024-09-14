@@ -321,6 +321,36 @@ function App() {
 export default App;
 ```
 
+### 13. useModal Hook
+
+The `useModal` hook is a custom React hook that manages the open and close states of modals. This hook is designed to work exclusively in `client-side` rendering (CSR) environments and persists the modal's state in `localStorage` with an auto-generated unique key, ensuring no conflicts between different modals.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import { useModal } from "top-react/useModal/useModal";
+
+const App = () => {
+  const { openModal, closeModal, Modal } = useModal();
+
+  return (
+    <div>
+      <button onClick={openModal}>Open Modal</button>
+
+      <Modal>
+        <h1>Modal Content</h1>
+        <p>This is a dynamic modal content.</p>
+        <button onClick={closeModal}>Close Modal</button>
+      </Modal>
+    </div>
+  );
+};
+
+export default App;
+```
+
 ## Conclusion
 
 The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press and clipboard events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
