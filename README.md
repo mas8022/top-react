@@ -351,6 +351,34 @@ const App = () => {
 export default App;
 ```
 
+### 14. Draggable Provider
+
+The `Draggable` component is a custom React component that enables elements to be moved around within the viewport by clicking and dragging. It operates in `client-side` environments and manages drag events to update the element’s position dynamically.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import Draggable from "top-react/Draggable/Draggable";
+
+const App = () => {
+  return (
+    <div className="w-full h-screen flex flex-col items-center justify-center gap-8">
+      {/* Draggable component wraps any content that should be draggable */}
+      <Draggable>
+        <div className="im the test element that can be dragged">
+          {/* Content or element of the draggable element */}
+          Drag me!
+        </div>
+      </Draggable>
+    </div>
+  );
+};
+
+export default App;
+```
+
 ## Conclusion
 
 The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press and clipboard events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
