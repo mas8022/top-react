@@ -360,7 +360,7 @@ The `Draggable` component is a custom React component that enables elements to b
 ```javascript
 "use client";
 import React from "react";
-import Draggable from "top-react/Draggable/Draggable";
+import { Draggable } from "top-react/Draggable/Draggable";
 
 const App = () => {
   return (

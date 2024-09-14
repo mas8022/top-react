@@ -65,4 +65,4 @@ const Draggable = ({ children }) => {
   );
 };
 
-export default Draggable;
+export { Draggable };
