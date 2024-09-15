@@ -379,6 +379,30 @@ const App = () => {
 export default App;
 ```
 
+### 15. useLocalNotification Hook
+
+The `useLocalNotification` hook is used to trigger local notifications within a `React` component. It takes a message as an argument and provides a function to display that message as a notification. This hook only works on the `client side`, as it relies on browser APIs that are not available on the server.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import { useLocalNotification } from "top-react/useLocalNotification/useLocalNotification";
+
+const App = () => {
+  const sendAlert = useLocalNotification("New message received!");
+
+  return (
+    <div>
+      <button onClick={sendAlert}>click</button>
+    </div>
+  );
+};
+
+export default App;
+```
+
 ## Conclusion
 
 The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press and clipboard events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
