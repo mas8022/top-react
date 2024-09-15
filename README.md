@@ -1,13 +1,13 @@
-# top-react
+# mas22
 
-**top-react** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers various components and hooks that can help improve the user experience and site performance.
+**mas22** is a powerful React library designed to enhance the performance and usability of SSR (Server-Side Rendering) in Next.js applications. It offers various components and hooks that can help improve the user experience and site performance.
 
 ## Installation
 
-To get started, install `top-react` using npm:
+To get started, install `mas22` using npm:
 
 ```bash
-npm install top-react
+npm install mas22
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ The `ServerButton` component is designed to handle server-side form submissions 
 
 ```javascript
 import React from "react";
-import { ServerButton } from "top-react/ServerButton/ServerButton";
+import { ServerButton } from "mas22/ServerButton/ServerButton";
 
 export default function App() {
   let testValue = 0;
@@ -46,7 +46,7 @@ The `Ue` provider enhances your site's performance by delaying the rendering of 
 
 ```javascript
 import React from "react";
-import { Ue } from "top-react/ultraElem/ultraElem";
+import { Ue } from "mas22/ultraElem/ultraElem";
 
 const App = () => {
   return (
@@ -73,7 +73,7 @@ The `useLocalStorage` hook allows you to easily store and persist state in the b
 
 ```javascript
 import React from "react";
-import { useLocalStorage } from "top-react/useLocalStorage/useLocalStorage";
+import { useLocalStorage } from "mas22/useLocalStorage/useLocalStorage";
 
 const App = () => {
   const [count, setCount] = useLocalStorage("count", 0);
@@ -97,7 +97,7 @@ The `useSanitizeInput` hook sanitizes user inputs to enhance security by prevent
 
 ```javascript
 import React, { useState } from "react";
-import { useSanitizeInput } from "top-react/useSanitizeInput/useSanitizeInput";
+import { useSanitizeInput } from "mas22/useSanitizeInput/useSanitizeInput";
 
 export default function App() {
   const [testValue, setTestValue] = useState("");
@@ -122,7 +122,7 @@ The `GetVideoDuration` function takes an uploaded video file and returns the dur
 ```javascript
 "use client";
 import React, { useState } from "react";
-import { GetVideoDuration } from "top-react/GetVideoDuration/GetVideoDuration";
+import { GetVideoDuration } from "mas22/GetVideoDuration/GetVideoDuration";
 
 export default function App() {
   const [testFile, setTestFile] = useState({});
@@ -149,7 +149,7 @@ The `useOnline` hook detects whether the user is online or offline in real-time.
 ```javascript
 "use client";
 import React from "react";
-import { useOnline } from "top-react/useOnline/useOnline";
+import { useOnline } from "mas22/useOnline/useOnline";
 
 export default function App() {
   const isOnline = useOnline();
@@ -167,7 +167,7 @@ The `useIdle` hook detects user inactivity on the current page based on JavaScri
 ```javascript
 "use client";
 import React from "react";
-import { useIdle } from "top-react/useIdle/useIdle";
+import { useIdle } from "mas22/useIdle/useIdle";
 
 function App() {
   const isIdle = useIdle(5000); // User inactivity for 5 seconds
@@ -195,7 +195,7 @@ The `useScrollProgress` hook tracks the scroll progress of the page. It returns 
 ```javascript
 "use client";
 import React from "react";
-import { useScrollProgress } from "top-react/useScrollProgress/useScrollProgress";
+import { useScrollProgress } from "mas22/useScrollProgress/useScrollProgress";
 
 function App() {
   const scrollProgress = useScrollProgress();
@@ -217,7 +217,7 @@ The `useLongPress` hook triggers an action when the user holds down a click on a
 ```javascript
 "use client";
 import React from "react";
-import { useLongPress } from "top-react/useLongPress/useLongPress";
+import { useLongPress } from "mas22/useLongPress/useLongPress";
 
 function LongPressComponent() {
   const testFunction = () => {
@@ -246,7 +246,7 @@ The `useClipboard` hook helps you easily copy text to the clipboard. It works on
 ```javascript
 "use client";
 import React from "react";
-import useClipboard from "top-react/useClipboard/useClipboard";
+import useClipboard from "mas22/useClipboard/useClipboard";
 
 function App() {
   const { copied, copyToClipboard } = useClipboard();
@@ -265,14 +265,14 @@ export default App;
 
 ### 11. useTabVisibility Hook
 
-The `useTabVisibility` hook from the `top-react` library helps you track whether the browser tab is currently visible or hidden. This hook is designed to be used only in `client-side` rendering (CSR) environments.
+The `useTabVisibility` hook from the `mas22` library helps you track whether the browser tab is currently visible or hidden. This hook is designed to be used only in `client-side` rendering (CSR) environments.
 
 #### Example:
 
 ```javascript
 "use client";
 import React, { useEffect } from "react";
-import { useTabVisibility } from "top-react/useTabVisibility/useTabVisibility";
+import { useTabVisibility } from "mas22/useTabVisibility/useTabVisibility";
 
 function App() {
   const isTabVisible = useTabVisibility();
@@ -296,7 +296,7 @@ The `useGeoLocation` hook is a custom React hook that retrieves the user's geogr
 ```javascript
 "use client";
 import React from "react";
-import { useGeoLocation } from "top-react/useGeoLocation/useGeoLocation";
+import { useGeoLocation } from "mas22/useGeoLocation/useGeoLocation";
 
 function App() {
   const { location, error, loading } = useGeoLocation();
@@ -330,7 +330,7 @@ The `useModal` hook is a custom React hook that manages the open and close state
 ```javascript
 "use client";
 import React from "react";
-import { useModal } from "top-react/useModal/useModal";
+import { useModal } from "mas22/useModal/useModal";
 
 const App = () => {
   const { openModal, closeModal, Modal } = useModal();
@@ -360,7 +360,7 @@ The `Draggable` component is a custom React component that enables elements to b
 ```javascript
 "use client";
 import React from "react";
-import { Draggable } from "top-react/Draggable/Draggable";
+import { Draggable } from "mas22/Draggable/Draggable";
 
 const App = () => {
   return (
@@ -388,7 +388,7 @@ The `useLocalNotification` hook is used to trigger local notifications within a 
 ```javascript
 "use client";
 import React from "react";
-import { useLocalNotification } from "top-react/useLocalNotification/useLocalNotification";
+import { useLocalNotification } from "mas22/useLocalNotification/useLocalNotification";
 
 const App = () => {
   const sendAlert = useLocalNotification("New message received!");
@@ -405,4 +405,4 @@ export default App;
 
 ## Conclusion
 
-The `top-react` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press and clipboard events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
+The `mas22` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press and clipboard events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
