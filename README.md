@@ -403,6 +403,47 @@ const App = () => {
 export default App;
 ```
 
+### 16. useAudio Hook
+
+The `useAudio` hook manages audio playback, allowing control over play, pause, and volume adjustment. It operates only on the `client side` due to reliance on browser APIs.
+
+#### Example:
+
+```javascript
+"use client";
+import React from "react";
+import useAudio from "mas22/useAudio/useAudio";
+
+const App = () => {
+  const { isPlaying, play, pause, setVolumeLevel, error } = useAudio(
+    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  );
+
+  return (
+    <div>
+      <button onClick={play} disabled={isPlaying}>
+        Play
+      </button>
+      <button onClick={pause} disabled={!isPlaying}>
+        Pause
+      </button>
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        onChange={(e) => setVolumeLevel(e.target.value)}
+        defaultValue={1} // Default volume value
+        title="Volume Control"
+      />
+      {error && <p>{error}</p>}
+    </div>
+  );
+};
+
+export default App;
+```
+
 ## Conclusion
 
 The `mas22` library provides you with tools to manage SSR form submissions easily, optimize your site's performance with delayed rendering and graceful loading animations, handle optimistic UI updates seamlessly, sanitize user inputs for security, obtain video durations, track online/offline status, detect user inactivity, track scroll progress, and handle long press and clipboard events. With these components, you can ensure a smooth and responsive user experience in your Next.js applications.
