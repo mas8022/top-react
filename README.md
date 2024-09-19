@@ -12,33 +12,7 @@ npm install mas22
 
 ## Usage
 
-### 1. ServerButton Component
-
-The `ServerButton` component is designed to handle server-side form submissions in SSR pages. It wraps your server-side action in a form and submits it upon clicking the button.
-
-#### Example:
-
-```javascript
-import React from "react";
-import { ServerButton } from "mas22/ServerButton/ServerButton";
-
-export default function App() {
-  let testValue = 0;
-
-  const testFunction = async () => {
-    "use server";
-    console.log("this message shows in server");
-  };
-
-  return (
-    <>
-      <ServerButton onClick={testFunction}>Click</ServerButton>
-    </>
-  );
-}
-```
-
-### 2. Ue Provider
+### 1. Ue Provider
 
 The `Ue` provider enhances your site's performance by delaying the rendering of its children until the user scrolls to the element. If the user has a weak internet connection, a beautiful loading animation is displayed until the content is fully loaded.
 
@@ -65,7 +39,7 @@ const App = () => {
 export default App;
 ```
 
-### 3. useLocalStorage Hook
+### 2. useLocalStorage Hook
 
 The `useLocalStorage` hook allows you to easily store and persist state in the browser's localStorage. This is useful for maintaining state across page reloads.
 
@@ -89,7 +63,7 @@ const App = () => {
 export default App;
 ```
 
-### 4. useSanitizeInput Hook
+### 3. useSanitizeInput Hook
 
 The `useSanitizeInput` hook sanitizes user inputs to enhance security by preventing potential XSS (Cross-Site Scripting) attacks.
 
@@ -113,7 +87,7 @@ export default function App() {
 }
 ```
 
-### 5. GetVideoDuration Function
+### 4. GetVideoDuration Function
 
 The `GetVideoDuration` function takes an uploaded video file and returns the duration of the video.
 
@@ -140,7 +114,7 @@ export default function App() {
 }
 ```
 
-### 6. useOnline Hook
+### 5. useOnline Hook
 
 The `useOnline` hook detects whether the user is online or offline in real-time. Note that this hook can only be used on `client-side` rendered (CSR) pages and requires the `"use client"` directive at the top of the file.
 
@@ -158,7 +132,7 @@ export default function App() {
 }
 ```
 
-### 7. useIdle Hook
+### 6. useIdle Hook
 
 The `useIdle` hook detects user inactivity on the current page based on JavaScript events. It is designed to be used in `client-side` rendered (CSR) pages and requires the `"use client"` directive.
 
@@ -186,7 +160,7 @@ function App() {
 export default App;
 ```
 
-### 8. useScrollProgress Hook
+### 7. useScrollProgress Hook
 
 The `useScrollProgress` hook tracks the scroll progress of the page. It returns a percentage value representing how much of the page has been scrolled. This hook is intended to be used on `client-side` rendered (CSR) pages and requires the `"use client"` directive.
 
@@ -208,7 +182,7 @@ function App() {
 export default App;
 ```
 
-### 9. useLongPress Hook
+### 8. useLongPress Hook
 
 The `useLongPress` hook triggers an action when the user holds down a click on an element for a specified duration. This hook is intended to be used on `client-side` rendered (CSR) pages and requires the `"use client"` directive.
 
@@ -237,7 +211,7 @@ function LongPressComponent() {
 export default LongPressComponent;
 ```
 
-### 10. useClipboard Hook
+### 9. useClipboard Hook
 
 The `useClipboard` hook helps you easily copy text to the clipboard. It works only on `client-side` rendered (CSR) pages and requires the `"use client"` directive.
 
@@ -263,7 +237,7 @@ function App() {
 export default App;
 ```
 
-### 11. useTabVisibility Hook
+### 10. useTabVisibility Hook
 
 The `useTabVisibility` hook from the `mas22` library helps you track whether the browser tab is currently visible or hidden. This hook is designed to be used only in `client-side` rendering (CSR) environments.
 
@@ -287,7 +261,7 @@ function App() {
 export default App;
 ```
 
-### 12. useGeoLocation Hook
+### 11. useGeoLocation Hook
 
 The `useGeoLocation` hook is a custom React hook that retrieves the user's geographic location. This hook is designed to work exclusively in `client-side` rendering (CSR) environments.
 
@@ -321,7 +295,7 @@ function App() {
 export default App;
 ```
 
-### 13. useModal Hook
+### 12. useModal Hook
 
 The `useModal` hook is a custom React hook that manages the open and close states of modals. This hook is designed to work exclusively in `client-side` rendering (CSR) environments and persists the modal's state in `localStorage` with an auto-generated unique key, ensuring no conflicts between different modals.
 
@@ -351,7 +325,7 @@ const App = () => {
 export default App;
 ```
 
-### 14. Draggable Provider
+### 13. Draggable Provider
 
 The `Draggable` component is a custom React component that enables elements to be moved around within the viewport by clicking and dragging. It operates in `client-side` environments and manages drag events to update the element’s position dynamically.
 
@@ -379,7 +353,7 @@ const App = () => {
 export default App;
 ```
 
-### 15. useLocalNotification Hook
+### 14. useLocalNotification Hook
 
 The `useLocalNotification` hook is used to trigger local notifications within a `React` component. It takes a message as an argument and provides a function to display that message as a notification. This hook only works on the `client side`, as it relies on browser APIs that are not available on the server.
 
@@ -396,47 +370,6 @@ const App = () => {
   return (
     <div>
       <button onClick={sendAlert}>click</button>
-    </div>
-  );
-};
-
-export default App;
-```
-
-### 16. useAudio Hook
-
-The `useAudio` hook manages audio playback, allowing control over play, pause, and volume adjustment. It operates only on the `client side` due to reliance on browser APIs.
-
-#### Example:
-
-```javascript
-"use client";
-import React from "react";
-import useAudio from "mas22/useAudio/useAudio";
-
-const App = () => {
-  const { isPlaying, play, pause, setVolumeLevel, error } = useAudio(
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-  );
-
-  return (
-    <div>
-      <button onClick={play} disabled={isPlaying}>
-        Play
-      </button>
-      <button onClick={pause} disabled={!isPlaying}>
-        Pause
-      </button>
-      <input
-        type="range"
-        min="0"
-        max="1"
-        step="0.1"
-        onChange={(e) => setVolumeLevel(e.target.value)}
-        defaultValue={1} // Default volume value
-        title="Volume Control"
-      />
-      {error && <p>{error}</p>}
     </div>
   );
 };
