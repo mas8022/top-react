@@ -1,8 +1,13 @@
 "use client";
-import { useRef, useEffect, memo } from "react";
+import React, { useRef, useEffect, memo } from "react";
 
-const GetVideoDuration = memo(({ setDuration, file }) => {
-  const videoRef = useRef(null);
+interface GetVideoDurationProps {
+  setDuration: (duration: number) => void;
+  file: File | null;
+}
+
+const GetVideoDuration: React.FC<GetVideoDurationProps> = memo(({ setDuration, file }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (!file) return;
@@ -29,7 +34,7 @@ const GetVideoDuration = memo(({ setDuration, file }) => {
     }
   }, [file, setDuration]);
 
-  return file && <video ref={videoRef} style={{ display: "none" }}></video>;
+  return file ? <video ref={videoRef} style={{ display: "none" }}></video> : null;
 });
 
 export { GetVideoDuration };

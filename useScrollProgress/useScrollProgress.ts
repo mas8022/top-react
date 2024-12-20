@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-function useScrollProgress() {
-  const [scrollProgress, setScrollProgress] = useState(0);
+function useScrollProgress(): number {
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
 
-  const handleScroll = () => {
+  const handleScroll = (): void => {
     const scrollTop = window.pageYOffset;
     const scrollHeight = document.documentElement.scrollHeight;
     const clientHeight = document.documentElement.clientHeight;

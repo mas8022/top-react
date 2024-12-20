@@ -7,18 +7,30 @@ import React, {
   useRef,
   useCallback,
 } from "react";
-import styles from "./ultraElem.module.css";
+
+interface UseInViewOptions {
+  threshold?: number | number[];
+  root?: Element | null;
+  rootMargin?: string;
+  triggerOnce?: boolean;
+}
+
+interface UseInViewReturn {
+  ref: (node: Element | null) => void;
+  inView: boolean;
+  entry: IntersectionObserverEntry | undefined;
+}
 
 const useInView = ({
   threshold = 0,
   root = null,
   rootMargin = "0%",
   triggerOnce = false,
-} = {}) => {
+}: UseInViewOptions = {}): UseInViewReturn => {
   const [inView, setInView] = useState(false);
-  const [entry, setEntry] = useState();
-  const nodeRef = useRef(null);
-  const observer = useRef(null);
+  const [entry, setEntry] = useState<IntersectionObserverEntry | undefined>();
+  const nodeRef = useRef<Element | null>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined" && nodeRef.current) {
@@ -28,7 +40,7 @@ const useInView = ({
           setInView(entry.isIntersecting);
           setEntry(entry);
           if (entry.isIntersecting && triggerOnce) {
-            observer.current.disconnect();
+            observer.current?.disconnect();
           }
         },
         {
@@ -41,31 +53,26 @@ const useInView = ({
     }
 
     return () => {
-      if (observer.current) {
-        observer.current.disconnect();
-      }
+      observer.current?.disconnect();
     };
   }, [nodeRef.current]);
 
-  const ref = useCallback((node) => {
+  const ref = useCallback((node: Element | null) => {
     if (node) {
       nodeRef.current = node;
-      if (observer.current) {
-        observer.current.observe(node);
-      }
+      observer.current?.observe(node);
     }
   }, []);
 
   return { ref, inView, entry };
 };
 
-const Loader = () => (
-  <div className={styles.containerLoadingBox}>
-    <div className={styles.loadingBox}></div>
-  </div>
-);
+interface UeProps {
+  className?: string;
+  children: React.ReactNode;
+}
 
-const Ue = memo(({ className: classes, children }) => {
+const Ue: React.FC<UeProps> = memo(({ className: classes, children }) => {
   const [loaded, setLoaded] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
@@ -87,9 +94,11 @@ const Ue = memo(({ className: classes, children }) => {
   return (
     <div ref={ref} className={classes}>
       {loaded ? (
-        <Suspense fallback={<Loader />}>{children}</Suspense>
+        <Suspense fallback={<div className="hidden"></div>}>
+          {children}
+        </Suspense>
       ) : (
-        <Loader />
+        <div className="hidden"></div>
       )}
     </div>
   );

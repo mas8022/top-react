@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-const useTabVisibility = () => {
-  const [isVisible, setIsVisible] = useState(true);
+const useTabVisibility = (): boolean => {
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
   useEffect(() => {
-    const handleVisibilityChange = () => {
+    const handleVisibilityChange = (): void => {
       setIsVisible(!document.hidden);
     };
 

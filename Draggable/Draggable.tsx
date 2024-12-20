@@ -1,27 +1,39 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, ReactNode } from "react";
 
-const Draggable = ({ children }) => {
-  const [dragging, setDragging] = useState(false);
-  const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
-  const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
+interface DraggableProps {
+  children: ReactNode;
+}
+
+interface Position {
+  x: number;
+  y: number;
+}
+
+const Draggable: React.FC<DraggableProps> = ({ children }) => {
+  const [dragging, setDragging] = useState<boolean>(false);
+  const [startPosition, setStartPosition] = useState<Position>({ x: 0, y: 0 });
+  const [currentPosition, setCurrentPosition] = useState<Position>({
+    x: 0,
+    y: 0,
+  });
 
   useEffect(() => {
     // Retrieve the saved position from localStorage when the component mounts
-    const savedPosition = JSON.parse(localStorage.getItem("dragPosition"));
+    const savedPosition = localStorage.getItem("dragPosition");
     if (savedPosition) {
-      setCurrentPosition(savedPosition);
+      setCurrentPosition(JSON.parse(savedPosition));
     }
   }, []);
 
-  const onMouseDown = useCallback((event) => {
+  const onMouseDown = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
     setDragging(true);
     setStartPosition({ x: event.clientX, y: event.clientY });
   }, []);
 
   const onMouseMove = useCallback(
-    (event) => {
+    (event: MouseEvent) => {
       if (dragging) {
-        const newPosition = {
+        const newPosition: Position = {
           x: currentPosition.x + (event.clientX - startPosition.x),
           y: currentPosition.y + (event.clientY - startPosition.y),
         };
@@ -50,7 +62,7 @@ const Draggable = ({ children }) => {
     };
   }, [onMouseMove, onMouseUp]);
 
-  const style = {
+  const style: React.CSSProperties = {
     position: "absolute",
     left: `${currentPosition.x}px`,
     top: `${currentPosition.y}px`,

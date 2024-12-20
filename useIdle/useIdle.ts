@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-function useIdle(timeout = 3000) {
-  const [isIdle, setIsIdle] = useState(false);
-  let timeoutId;
+function useIdle(timeout: number = 3000): boolean {
+  const [isIdle, setIsIdle] = useState<boolean>(false);
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
   const resetIdleTimer = () => {
     setIsIdle(false);

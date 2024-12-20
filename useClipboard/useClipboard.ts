@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
 
-function useClipboard(timeout = 2000) {
-  const [copied, setCopied] = useState(false);
+function useClipboard(timeout: number = 2000) {
+  const [copied, setCopied] = useState<boolean>(false);
 
   const copyToClipboard = useCallback(
-    (text) => {
+    (text: string) => {
       navigator.clipboard.writeText(text).then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), timeout);

@@ -1,11 +1,20 @@
 import { useState, useEffect, useCallback } from "react";
 
-function useGeoLocation() {
-  const [location, setLocation] = useState({ lat: null, lon: null });
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+interface Location {
+  lat: number | null;
+  lon: number | null;
+}
 
-  const handleSuccess = useCallback((position) => {
+interface GeoLocationError {
+  message: string;
+}
+
+function useGeoLocation() {
+  const [location, setLocation] = useState<Location>({ lat: null, lon: null });
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const handleSuccess = useCallback((position: GeolocationPosition) => {
     setLocation({
       lat: position.coords.latitude,
       lon: position.coords.longitude,
@@ -13,7 +22,7 @@ function useGeoLocation() {
     setLoading(false);
   }, []);
 
-  const handleError = useCallback((error) => {
+  const handleError = useCallback((error: GeolocationPositionError) => {
     setError(error.message);
     setLoading(false);
   }, []);

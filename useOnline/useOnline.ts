@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const useOnline = () => {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const isOnlineRef = useRef(isOnline);
+const useOnline = (): boolean => {
+  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
+  const isOnlineRef = useRef<boolean>(isOnline);
 
   useEffect(() => {
     const handleOnline = () => {
@@ -27,7 +27,6 @@ const useOnline = () => {
     return () => {
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
-      
     };
   }, []);
 

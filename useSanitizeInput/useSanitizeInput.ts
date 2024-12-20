@@ -1,4 +1,4 @@
-const useSanitizeInput = (value) => {
+const useSanitizeInput = (value: string): string => {
   const temp = document.createElement("div");
   temp.textContent = value;
   const sanitizedValue = temp.innerHTML;

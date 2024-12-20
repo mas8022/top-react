@@ -1,8 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 
-function useLongPress(callback = () => {}, ms = 300) {
-  const [isPressing, setIsPressing] = useState(false);
-  const [startLongPress, setStartLongPress] = useState(false);
+type UseLongPressHandlers = {
+  onMouseDown: () => void;
+  onTouchStart: () => void;
+  onMouseUp: () => void;
+  onMouseLeave: () => void;
+  onTouchEnd: () => void;
+};
+
+function useLongPress(callback: () => void = () => {}, ms: number = 300): UseLongPressHandlers {
+  const [isPressing, setIsPressing] = useState<boolean>(false);
+  const [startLongPress, setStartLongPress] = useState<boolean>(false);
 
   const start = useCallback(() => {
     setStartLongPress(true);
@@ -14,19 +22,21 @@ function useLongPress(callback = () => {}, ms = 300) {
   }, []);
 
   useEffect(() => {
-    let timerId;
+    let timerId: number | undefined;
 
     if (startLongPress) {
-      timerId = setTimeout(() => {
+      timerId = window.setTimeout(() => {
         setIsPressing(true);
         callback();
       }, ms);
-    } else {
+    } else if (timerId !== undefined) {
       clearTimeout(timerId);
     }
 
     return () => {
-      clearTimeout(timerId);
+      if (timerId !== undefined) {
+        clearTimeout(timerId);
+      }
     };
   }, [startLongPress, ms, callback]);
 
